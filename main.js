@@ -4,7 +4,25 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+function commenceLike(e) {
+  mimicServerCall().then((res) => {
+    console.log("Success!")
+    e.target.classList.add("activated-heart")
+  }).catch((err) => {
+    console.error(err)
+    const errDiv = document.querySelector("#modal")
+    errDiv.classList.remove("hidden")
+    setTimeout(function() {
+      errDiv.classList.add("hidden")
+    }, 3000)
+  })
+}
 
+const likeRegions = document.querySelectorAll(".like")
+
+likeRegions.forEach( likeRegion => {
+  likeRegion.addEventListener("click", commenceLike)
+})
 
 
 //------------------------------------------------------------------------------
